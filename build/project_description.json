@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "Indeema_emb_esp",
-    "project_version":    "1",
+    "project_version":    "e4d1a16-dirty",
     "project_path":       "/home/myroslav/Indeema_emb_esp",
     "idf_path":           "/home/myroslav/esp/esp-idf",
     "build_dir":          "/home/myroslav/Indeema_emb_esp/build",
@@ -800,12 +800,12 @@
             "dir": "/home/myroslav/Indeema_emb_esp/main",
             "type": "LIBRARY",
             "lib": "__idf_main",
-            "reqs": [],
+            "reqs": [ "nvs_flash", "bt", "espressif__led_strip" ],
             "priv_reqs": [ "espressif__led_strip" ],
             "managed_reqs": [],
             "managed_priv_reqs": [ "espressif__led_strip" ],
             "file": "/home/myroslav/Indeema_emb_esp/build/esp-idf/main/libmain.a",
-            "sources": [ "/home/myroslav/Indeema_emb_esp/main/main_AP.c" ],
+            "sources": [ "/home/myroslav/Indeema_emb_esp/main/main_ble.c", "/home/myroslav/Indeema_emb_esp/main/gatt_svr.c" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {

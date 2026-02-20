@@ -6,24 +6,24 @@
 #include "host/ble_hs.h"
 #include "services/gap/ble_svc_gap.h"
 #include "gatt_svr.h"
+#include "led_strip.h"
 
 static const char *TAG = "MAIN_BLE";
 static uint8_t own_addr_type;
 
 void ble_app_advertise(void);
 
-// Обробник подій підключення/відключення
 static int ble_gap_event(struct ble_gap_event *event, void *arg) {
     switch (event->type) {
         case BLE_GAP_EVENT_CONNECT:
             ESP_LOGI(TAG, "Телефон підключився! Статус: %d", event->connect.status);
             if (event->connect.status != 0) {
-                ble_app_advertise(); // Якщо помилка - рекламуємо знову
+                ble_app_advertise(); 
             }
             break;
         case BLE_GAP_EVENT_DISCONNECT:
             ESP_LOGI(TAG, "Телефон відключився! Причина: %d", event->disconnect.reason);
-            ble_app_advertise(); // Знову починаємо пошук
+            ble_app_advertise(); 
             break;
         case BLE_GAP_EVENT_ADV_COMPLETE:
             ESP_LOGI(TAG, "Рекламування завершено, перезапуск...");
@@ -33,7 +33,6 @@ static int ble_gap_event(struct ble_gap_event *event, void *arg) {
     return 0;
 }
 
-// Налаштування "видимості" для телефону
 void ble_app_advertise(void) {
     struct ble_gap_adv_params adv_params;
     struct ble_hs_adv_fields fields;
@@ -42,7 +41,6 @@ void ble_app_advertise(void) {
     memset(&fields, 0, sizeof fields);
     fields.flags = BLE_HS_ADV_F_DISC_GEN | BLE_HS_ADV_F_BREDR_UNSUP;
     
-    // Вказуємо ім'я, яке побачить телефон
     const char *name = ble_svc_gap_device_name();
     fields.name = (uint8_t *)name;
     fields.name_len = strlen(name);
@@ -65,24 +63,45 @@ void ble_app_advertise(void) {
     }
 }
 
-// Запускається, коли стек Bluetooth готовий до роботи
 static void ble_app_on_sync(void) {
     ble_hs_id_infer_auto(0, &own_addr_type);
-    ble_app_advertise(); // Починаємо рекламувати
+    ble_app_advertise(); 
 }
 
-// Окремий потік FreeRTOS для обробки Bluetooth
 void ble_host_task(void *param) {
     ESP_LOGI(TAG, "Запуск NimBLE Host Task");
     nimble_port_run();
     nimble_port_freertos_deinit();
 }
 
-// ГОЛОВНА ТОЧКА ВХОДУ (Замість main())
+
+#define BLINK_GPIO 48
+static led_strip_handle_t led_strip;
+
+void init_led(void) {
+    led_strip_config_t strip_config = {
+        .strip_gpio_num = BLINK_GPIO,
+        .max_leds = 1, 
+    };
+    led_strip_rmt_config_t rmt_config = {
+        .resolution_hz = 10 * 1000 * 1000, 
+    };
+    ESP_ERROR_CHECK(led_strip_new_rmt_device(&strip_config, &rmt_config, &led_strip));
+    led_strip_clear(led_strip); 
+}
+
+void control_onboard_led(bool turn_on) {
+    if (turn_on) {
+        led_strip_set_pixel(led_strip, 0, 0, 255, 0); 
+        led_strip_refresh(led_strip);
+    } else {
+        led_strip_clear(led_strip);
+    }
+}
+
 void app_main(void) {
     ESP_LOGI(TAG, "Запуск системи на ESP32-S3...");
-
-    // 1. Очищення та ініціалізація NVS (Необхідно для роботи Bluetooth)
+    init_led();
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
         ESP_ERROR_CHECK(nvs_flash_erase());
@@ -90,18 +109,13 @@ void app_main(void) {
     }
     ESP_ERROR_CHECK(ret);
 
-    // 2. Ініціалізація ядра NimBLE
     nimble_port_init();
 
-    // 3. Встановлюємо ім'я пристрою
-    ble_svc_gap_device_name_set("Indeema_ESP_S3");
+    ble_svc_gap_device_name_set("(-_-;)");
 
-    // 4. Викликаємо нашу функцію з gatt_svr.c
     gatt_svr_init();
 
-    // 5. Кажемо стеку, що робити після синхронізації
     ble_hs_cfg.sync_cb = ble_app_on_sync;
 
-    // 6. Запускаємо Bluetooth у його власному потоці
     nimble_port_freertos_init(ble_host_task);
 }

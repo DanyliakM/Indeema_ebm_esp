@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "/home/myroslav/Indeema_emb_esp/.git/HEAD"
+  "/home/myroslav/Indeema_emb_esp/.git/refs/heads/testing"
   "/home/myroslav/Indeema_emb_esp/CMakeLists.txt"
   "CMakeFiles/3.28.3/CMakeASMCompiler.cmake"
   "CMakeFiles/3.28.3/CMakeCCompiler.cmake"
@@ -252,6 +253,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/git-data/head-ref"
   "CMakeFiles/git-data/HEAD"
   "CMakeFiles/git-data/grabRef.cmake"
+  "CMakeFiles/git-data/head-ref"
   "config.env"
   "bootloader-prefix/tmp/bootloader-mkdirs.cmake"
   "bootloader-prefix/src/bootloader-stamp/bootloader-source_dirinfo.txt"

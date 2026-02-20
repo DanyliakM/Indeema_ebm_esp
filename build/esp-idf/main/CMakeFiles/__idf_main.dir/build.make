@@ -69,31 +69,47 @@ include esp-idf/main/CMakeFiles/__idf_main.dir/progress.make
 # Include the compile flags for this target's objects.
 include esp-idf/main/CMakeFiles/__idf_main.dir/flags.make
 
-esp-idf/main/CMakeFiles/__idf_main.dir/main_AP.c.obj: esp-idf/main/CMakeFiles/__idf_main.dir/flags.make
-esp-idf/main/CMakeFiles/__idf_main.dir/main_AP.c.obj: /home/myroslav/Indeema_emb_esp/main/main_AP.c
-esp-idf/main/CMakeFiles/__idf_main.dir/main_AP.c.obj: esp-idf/main/CMakeFiles/__idf_main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/myroslav/Indeema_emb_esp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main_AP.c.obj"
-	cd /home/myroslav/Indeema_emb_esp/build/esp-idf/main && /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT esp-idf/main/CMakeFiles/__idf_main.dir/main_AP.c.obj -MF CMakeFiles/__idf_main.dir/main_AP.c.obj.d -o CMakeFiles/__idf_main.dir/main_AP.c.obj -c /home/myroslav/Indeema_emb_esp/main/main_AP.c
+esp-idf/main/CMakeFiles/__idf_main.dir/main_ble.c.obj: esp-idf/main/CMakeFiles/__idf_main.dir/flags.make
+esp-idf/main/CMakeFiles/__idf_main.dir/main_ble.c.obj: /home/myroslav/Indeema_emb_esp/main/main_ble.c
+esp-idf/main/CMakeFiles/__idf_main.dir/main_ble.c.obj: esp-idf/main/CMakeFiles/__idf_main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/myroslav/Indeema_emb_esp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main_ble.c.obj"
+	cd /home/myroslav/Indeema_emb_esp/build/esp-idf/main && /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT esp-idf/main/CMakeFiles/__idf_main.dir/main_ble.c.obj -MF CMakeFiles/__idf_main.dir/main_ble.c.obj.d -o CMakeFiles/__idf_main.dir/main_ble.c.obj -c /home/myroslav/Indeema_emb_esp/main/main_ble.c
 
-esp-idf/main/CMakeFiles/__idf_main.dir/main_AP.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/__idf_main.dir/main_AP.c.i"
-	cd /home/myroslav/Indeema_emb_esp/build/esp-idf/main && /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/myroslav/Indeema_emb_esp/main/main_AP.c > CMakeFiles/__idf_main.dir/main_AP.c.i
+esp-idf/main/CMakeFiles/__idf_main.dir/main_ble.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/__idf_main.dir/main_ble.c.i"
+	cd /home/myroslav/Indeema_emb_esp/build/esp-idf/main && /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/myroslav/Indeema_emb_esp/main/main_ble.c > CMakeFiles/__idf_main.dir/main_ble.c.i
 
-esp-idf/main/CMakeFiles/__idf_main.dir/main_AP.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/__idf_main.dir/main_AP.c.s"
-	cd /home/myroslav/Indeema_emb_esp/build/esp-idf/main && /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/myroslav/Indeema_emb_esp/main/main_AP.c -o CMakeFiles/__idf_main.dir/main_AP.c.s
+esp-idf/main/CMakeFiles/__idf_main.dir/main_ble.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/__idf_main.dir/main_ble.c.s"
+	cd /home/myroslav/Indeema_emb_esp/build/esp-idf/main && /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/myroslav/Indeema_emb_esp/main/main_ble.c -o CMakeFiles/__idf_main.dir/main_ble.c.s
+
+esp-idf/main/CMakeFiles/__idf_main.dir/gatt_svr.c.obj: esp-idf/main/CMakeFiles/__idf_main.dir/flags.make
+esp-idf/main/CMakeFiles/__idf_main.dir/gatt_svr.c.obj: /home/myroslav/Indeema_emb_esp/main/gatt_svr.c
+esp-idf/main/CMakeFiles/__idf_main.dir/gatt_svr.c.obj: esp-idf/main/CMakeFiles/__idf_main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/myroslav/Indeema_emb_esp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object esp-idf/main/CMakeFiles/__idf_main.dir/gatt_svr.c.obj"
+	cd /home/myroslav/Indeema_emb_esp/build/esp-idf/main && /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT esp-idf/main/CMakeFiles/__idf_main.dir/gatt_svr.c.obj -MF CMakeFiles/__idf_main.dir/gatt_svr.c.obj.d -o CMakeFiles/__idf_main.dir/gatt_svr.c.obj -c /home/myroslav/Indeema_emb_esp/main/gatt_svr.c
+
+esp-idf/main/CMakeFiles/__idf_main.dir/gatt_svr.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/__idf_main.dir/gatt_svr.c.i"
+	cd /home/myroslav/Indeema_emb_esp/build/esp-idf/main && /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/myroslav/Indeema_emb_esp/main/gatt_svr.c > CMakeFiles/__idf_main.dir/gatt_svr.c.i
+
+esp-idf/main/CMakeFiles/__idf_main.dir/gatt_svr.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/__idf_main.dir/gatt_svr.c.s"
+	cd /home/myroslav/Indeema_emb_esp/build/esp-idf/main && /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/myroslav/Indeema_emb_esp/main/gatt_svr.c -o CMakeFiles/__idf_main.dir/gatt_svr.c.s
 
 # Object files for target __idf_main
 __idf_main_OBJECTS = \
-"CMakeFiles/__idf_main.dir/main_AP.c.obj"
+"CMakeFiles/__idf_main.dir/main_ble.c.obj" \
+"CMakeFiles/__idf_main.dir/gatt_svr.c.obj"
 
 # External object files for target __idf_main
 __idf_main_EXTERNAL_OBJECTS =
 
-esp-idf/main/libmain.a: esp-idf/main/CMakeFiles/__idf_main.dir/main_AP.c.obj
+esp-idf/main/libmain.a: esp-idf/main/CMakeFiles/__idf_main.dir/main_ble.c.obj
+esp-idf/main/libmain.a: esp-idf/main/CMakeFiles/__idf_main.dir/gatt_svr.c.obj
 esp-idf/main/libmain.a: esp-idf/main/CMakeFiles/__idf_main.dir/build.make
 esp-idf/main/libmain.a: esp-idf/main/CMakeFiles/__idf_main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/myroslav/Indeema_emb_esp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libmain.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/myroslav/Indeema_emb_esp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C static library libmain.a"
 	cd /home/myroslav/Indeema_emb_esp/build/esp-idf/main && $(CMAKE_COMMAND) -P CMakeFiles/__idf_main.dir/cmake_clean_target.cmake
 	cd /home/myroslav/Indeema_emb_esp/build/esp-idf/main && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/__idf_main.dir/link.txt --verbose=$(VERBOSE)
 

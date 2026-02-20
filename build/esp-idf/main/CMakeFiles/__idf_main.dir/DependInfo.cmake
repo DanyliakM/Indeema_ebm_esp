@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/myroslav/Indeema_emb_esp/main/main_AP.c" "esp-idf/main/CMakeFiles/__idf_main.dir/main_AP.c.obj" "gcc" "esp-idf/main/CMakeFiles/__idf_main.dir/main_AP.c.obj.d"
+  "/home/myroslav/Indeema_emb_esp/main/gatt_svr.c" "esp-idf/main/CMakeFiles/__idf_main.dir/gatt_svr.c.obj" "gcc" "esp-idf/main/CMakeFiles/__idf_main.dir/gatt_svr.c.obj.d"
+  "/home/myroslav/Indeema_emb_esp/main/main_ble.c" "esp-idf/main/CMakeFiles/__idf_main.dir/main_ble.c.obj" "gcc" "esp-idf/main/CMakeFiles/__idf_main.dir/main_ble.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

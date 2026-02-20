@@ -175,29 +175,53 @@ __idf_main/fast:
 	cd /home/myroslav/Indeema_emb_esp/build && $(MAKE) $(MAKESILENT) -f esp-idf/main/CMakeFiles/__idf_main.dir/build.make esp-idf/main/CMakeFiles/__idf_main.dir/build
 .PHONY : __idf_main/fast
 
-main_AP.obj: main_AP.c.obj
-.PHONY : main_AP.obj
+gatt_svr.obj: gatt_svr.c.obj
+.PHONY : gatt_svr.obj
 
 # target to build an object file
-main_AP.c.obj:
-	cd /home/myroslav/Indeema_emb_esp/build && $(MAKE) $(MAKESILENT) -f esp-idf/main/CMakeFiles/__idf_main.dir/build.make esp-idf/main/CMakeFiles/__idf_main.dir/main_AP.c.obj
-.PHONY : main_AP.c.obj
+gatt_svr.c.obj:
+	cd /home/myroslav/Indeema_emb_esp/build && $(MAKE) $(MAKESILENT) -f esp-idf/main/CMakeFiles/__idf_main.dir/build.make esp-idf/main/CMakeFiles/__idf_main.dir/gatt_svr.c.obj
+.PHONY : gatt_svr.c.obj
 
-main_AP.i: main_AP.c.i
-.PHONY : main_AP.i
+gatt_svr.i: gatt_svr.c.i
+.PHONY : gatt_svr.i
 
 # target to preprocess a source file
-main_AP.c.i:
-	cd /home/myroslav/Indeema_emb_esp/build && $(MAKE) $(MAKESILENT) -f esp-idf/main/CMakeFiles/__idf_main.dir/build.make esp-idf/main/CMakeFiles/__idf_main.dir/main_AP.c.i
-.PHONY : main_AP.c.i
+gatt_svr.c.i:
+	cd /home/myroslav/Indeema_emb_esp/build && $(MAKE) $(MAKESILENT) -f esp-idf/main/CMakeFiles/__idf_main.dir/build.make esp-idf/main/CMakeFiles/__idf_main.dir/gatt_svr.c.i
+.PHONY : gatt_svr.c.i
 
-main_AP.s: main_AP.c.s
-.PHONY : main_AP.s
+gatt_svr.s: gatt_svr.c.s
+.PHONY : gatt_svr.s
 
 # target to generate assembly for a file
-main_AP.c.s:
-	cd /home/myroslav/Indeema_emb_esp/build && $(MAKE) $(MAKESILENT) -f esp-idf/main/CMakeFiles/__idf_main.dir/build.make esp-idf/main/CMakeFiles/__idf_main.dir/main_AP.c.s
-.PHONY : main_AP.c.s
+gatt_svr.c.s:
+	cd /home/myroslav/Indeema_emb_esp/build && $(MAKE) $(MAKESILENT) -f esp-idf/main/CMakeFiles/__idf_main.dir/build.make esp-idf/main/CMakeFiles/__idf_main.dir/gatt_svr.c.s
+.PHONY : gatt_svr.c.s
+
+main_ble.obj: main_ble.c.obj
+.PHONY : main_ble.obj
+
+# target to build an object file
+main_ble.c.obj:
+	cd /home/myroslav/Indeema_emb_esp/build && $(MAKE) $(MAKESILENT) -f esp-idf/main/CMakeFiles/__idf_main.dir/build.make esp-idf/main/CMakeFiles/__idf_main.dir/main_ble.c.obj
+.PHONY : main_ble.c.obj
+
+main_ble.i: main_ble.c.i
+.PHONY : main_ble.i
+
+# target to preprocess a source file
+main_ble.c.i:
+	cd /home/myroslav/Indeema_emb_esp/build && $(MAKE) $(MAKESILENT) -f esp-idf/main/CMakeFiles/__idf_main.dir/build.make esp-idf/main/CMakeFiles/__idf_main.dir/main_ble.c.i
+.PHONY : main_ble.c.i
+
+main_ble.s: main_ble.c.s
+.PHONY : main_ble.s
+
+# target to generate assembly for a file
+main_ble.c.s:
+	cd /home/myroslav/Indeema_emb_esp/build && $(MAKE) $(MAKESILENT) -f esp-idf/main/CMakeFiles/__idf_main.dir/build.make esp-idf/main/CMakeFiles/__idf_main.dir/main_ble.c.s
+.PHONY : main_ble.c.s
 
 # Help Target
 help:
@@ -212,9 +236,12 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... __idf_main"
-	@echo "... main_AP.obj"
-	@echo "... main_AP.i"
-	@echo "... main_AP.s"
+	@echo "... gatt_svr.obj"
+	@echo "... gatt_svr.i"
+	@echo "... gatt_svr.s"
+	@echo "... main_ble.obj"
+	@echo "... main_ble.i"
+	@echo "... main_ble.s"
 .PHONY : help
 
 
