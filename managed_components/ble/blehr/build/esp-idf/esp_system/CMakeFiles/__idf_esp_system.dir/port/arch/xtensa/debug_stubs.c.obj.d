@@ -1,0 +1,25 @@
+esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/debug_stubs.c.obj: \
+ /home/myroslav/esp/esp-idf/components/esp_system/port/arch/xtensa/debug_stubs.c \
+ /home/myroslav/esp/esp-idf/components/xtensa/include/eri.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/lib/gcc/xtensa-esp32s3-elf/12.2.0/include/stdint.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/sys-include/stdint.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/sys-include/machine/_default_types.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/sys-include/sys/features.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/sys-include/_newlib_version.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/sys-include/sys/_intsup.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/sys-include/sys/_stdint.h \
+ /home/myroslav/esp/esp-idf/components/xtensa/include/xtensa-debug-module.h \
+ /home/myroslav/esp/esp-idf/components/xtensa/esp32s3/include/xtensa/config/core-isa.h \
+ /home/myroslav/esp/esp-idf/components/log/include/esp_log.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/lib/gcc/xtensa-esp32s3-elf/12.2.0/include/stdarg.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/sys-include/inttypes.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/sys-include/newlib.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/sys-include/sys/config.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/sys-include/machine/ieeefp.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/sys-include/_ansi.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/lib/gcc/xtensa-esp32s3-elf/12.2.0/include/stddef.h \
+ /home/myroslav/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/xtensa-esp32s3-elf/sys-include/sys/_locale.h \
+ /home/myroslav/Indeema_emb_esp/managed_components/ble/blehr/build/config/sdkconfig.h \
+ /home/myroslav/esp/esp-idf/components/esp_rom/include/esp_rom_sys.h \
+ /home/myroslav/esp/esp-idf/components/soc/esp32s3/include/soc/reset_reasons.h \
+ /home/myroslav/esp/esp-idf/components/log/include/esp_log_internal.h
