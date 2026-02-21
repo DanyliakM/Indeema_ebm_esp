@@ -44,7 +44,6 @@ static uint8_t battery_level = 85;
 static int battery_chr_access_cb(uint16_t conn_handle, uint16_t attr_handle,
                                  struct ble_gatt_access_ctxt *ctxt, void *arg)
 {
-    // Телефон просить ПРОЧИТАТИ дані
     if (ctxt->op == BLE_GATT_ACCESS_OP_READ_CHR) {
         ESP_LOGI(TAG, "Phone asked for battery level");
         
@@ -64,42 +63,31 @@ static int currTimeService_chr_access_cb(uint16_t conn_handle, uint16_t attr_han
     if (ctxt->op == BLE_GATT_ACCESS_OP_READ_CHR) {
         ESP_LOGI(TAG, "Телефон запитав час (Формат Exact Time 256)");
         
-        // 1. Отримуємо сирі секунди
         time_t curr_time = time(NULL);
         
-        // 2. Розбиваємо секунди на структуру з годинами, днями тощо
         struct tm timeinfo;
         localtime_r(&curr_time, &timeinfo); 
         
-        // 3. Створюємо масив на 10 байт для Bluetooth
         uint8_t time_data[10];
         
-        // Рік (у C tm_year рахує роки з 1900, тому додаємо 1900)
         uint16_t year = timeinfo.tm_year + 1900;
-        time_data[0] = year & 0xFF;         // Молодший байт (наприклад, 0xDC для 2012)
-        time_data[1] = (year >> 8) & 0xFF;  // Старший байт (наприклад, 0x07 для 2012)
+        time_data[0] = year & 0xFF;        
+        time_data[1] = (year >> 8) & 0xFF; 
         
-        // Місяць (у C tm_mon від 0 до 11, а Bluetooth хоче 1-12)
         time_data[2] = timeinfo.tm_mon + 1;
         
-        // День місяця
         time_data[3] = timeinfo.tm_mday;
         
-        // Години, хвилини, секунди
         time_data[4] = timeinfo.tm_hour;
         time_data[5] = timeinfo.tm_min;
         time_data[6] = timeinfo.tm_sec;
         
-        // День тижня (У C Неділя = 0, а в Bluetooth Неділя = 7)
         time_data[7] = (timeinfo.tm_wday == 0) ? 7 : timeinfo.tm_wday;
         
-        // Долі секунди (залишаємо по нулях)
         time_data[8] = 0;
         
-        // Причина зміни часу (0 = невідомо / ручне налаштування)
         time_data[9] = 0;
 
-        // 4. Відправляємо всі 10 байт
         int rc = os_mbuf_append(ctxt->om, time_data, sizeof(time_data));
         return rc == 0 ? 0 : BLE_ATT_ERR_INSUFFICIENT_RES;
     }
@@ -124,27 +112,27 @@ static const struct ble_gatt_svc_def gatt_svr_svcs[] = {
    
     {
         .type = BLE_GATT_SVC_TYPE_PRIMARY,
-        .uuid = BLE_UUID16_DECLARE(0x180F), // Стандартний UUID для Battery Service
+        .uuid = BLE_UUID16_DECLARE(0x180F), 
         .characteristics = (struct ble_gatt_chr_def[]) {
             {
-                .uuid = BLE_UUID16_DECLARE(0x2A19), // Стандартний UUID для Battery Level
-                .access_cb = battery_chr_access_cb, // Наш новий колбек
-                .flags = BLE_GATT_CHR_F_READ,       // Дозволяємо телефону ЧИТАТИ рівень
+                .uuid = BLE_UUID16_DECLARE(0x2A19), 
+                .access_cb = battery_chr_access_cb, 
+                .flags = BLE_GATT_CHR_F_READ,     
             },
-            { 0 } // Кінець характеристик сервісу батареї
+            { 0 } 
         },
     },
 
     {
         .type = BLE_GATT_SVC_TYPE_PRIMARY,
-        .uuid = BLE_UUID16_DECLARE(0x1805), // Стандартний UUID для Current Time Service
+        .uuid = BLE_UUID16_DECLARE(0x1805),
         .characteristics = (struct ble_gatt_chr_def[]) {
             {
-                .uuid = BLE_UUID16_DECLARE(0x2A2B), // Стандартний UUID для Current Time
-                .access_cb = currTimeService_chr_access_cb, // Колбек для поточного часу
-                .flags = BLE_GATT_CHR_F_READ,       // Дозволяємо телефону ЧИТАТИ поточний час
+                .uuid = BLE_UUID16_DECLARE(0x2A2B), 
+                .access_cb = currTimeService_chr_access_cb, 
+                .flags = BLE_GATT_CHR_F_READ,       
             },
-            { 0 } // Кінець характеристик сервісу поточного часу
+            { 0 } 
         },
     },
     { 0 }
