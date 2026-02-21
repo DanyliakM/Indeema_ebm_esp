@@ -5,7 +5,9 @@
 #include "services/gatt/ble_svc_gatt.h"
 #include "gatt_svr.h"
 #include "esp_log.h"
+
 #include <time.h>
+
 
 static const char *TAG = "GATT_SVR";
 
@@ -36,6 +38,7 @@ static int custom_chr_access_cb(uint16_t conn_handle, uint16_t attr_handle,
     }
     return 0; 
 }
+
 
 static uint8_t battery_level = 85;
 
@@ -105,6 +108,7 @@ static const struct ble_gatt_svc_def gatt_svr_svcs[] = {
                 .access_cb = custom_chr_access_cb,
                 .flags = BLE_GATT_CHR_F_WRITE, 
             },
+
             { 0 } 
         },
     },
@@ -136,6 +140,7 @@ static const struct ble_gatt_svc_def gatt_svr_svcs[] = {
         },
     },
     { 0 }
+
 };
 
 int gatt_svr_init(void) {
