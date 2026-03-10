@@ -7,6 +7,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
+#include "wifi_mqtt.h" // для можливості вимикати MQTT при натисканні кнопки джойстика
 
 static const char *TAG = "JOYSTICK";
 
@@ -71,15 +72,23 @@ void leds_joystick_task(void *pvParameters) {
     int x_val, y_val;
     uint8_t r = 0, g = 0, b = 0;
     uint8_t brightness = 50;
+    bool last_btn_state = false;
 
     while (1) {
-            ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, JOY_X_ADC_CHANNEL, &x_val));
-            ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, JOY_Y_ADC_CHANNEL, &y_val));
+        ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, JOY_X_ADC_CHANNEL, &x_val));
+        ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, JOY_Y_ADC_CHANNEL, &y_val));
 
-           // ESP_LOGI(TAG, "X: %d, Y: %d", x_val, y_val);
-            
-            global_joy_x = x_val; // для сервомотора
-            if( !mqtt_override) {
+        global_joy_x = x_val;
+
+        bool btn_pressed = (gpio_get_level(JOY_SW_GPIO) == 0);
+        
+        if (btn_pressed && !last_btn_state) {
+            mqtt_publish_status("STATUS: Joystick Button Clicked! Manual control restored.");
+            mqtt_override = false; 
+        }
+        last_btn_state = btn_pressed;
+
+        if (!mqtt_override) {
             if (y_val < 1000) brightness = 0;
             else if (y_val > 3000) brightness = 100;
             else brightness = 20;
@@ -90,6 +99,7 @@ void leds_joystick_task(void *pvParameters) {
 
             set_led_color(r, g, b);
         }
-        vTaskDelay(pdMS_TO_TICKS(100));
+
+        vTaskDelay(pdMS_TO_TICKS(50));
     }
 }

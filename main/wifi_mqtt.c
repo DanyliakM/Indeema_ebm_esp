@@ -102,3 +102,12 @@ void mqtt_app_start(void) {
     esp_mqtt_client_register_event(client, ESP_EVENT_ANY_ID, mqtt_event_handler, NULL);
     esp_mqtt_client_start(client);
 }
+
+// для відправки логів в mqtt (тест)
+void mqtt_publish_status(const char* message) {
+    if (client != NULL) {
+        esp_mqtt_client_publish(client, "indeema/esp32/status", message, 0, 1, 0);
+    }
+}
+
+        
