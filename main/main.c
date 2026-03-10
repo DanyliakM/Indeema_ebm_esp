@@ -17,11 +17,12 @@ idf.py -p /dev/ttyACM0 flash monitor
 #include "nvs_flash.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "joystick_led_v1.h"
-#include "sensors_v1.h"
+#include "servo_motor.h"
 #include "esp_log.h"
+#include "joystick_led_v1.h" // для доступу до глобальних змінних global_joy_x
 
-
+int global_joy_x = 2048;
+int16_t global_accel_x = 0;
 
 void app_main(void) {
     esp_err_t ret = nvs_flash_init();
@@ -31,7 +32,12 @@ void app_main(void) {
     }
     ESP_ERROR_CHECK(ret);
 
-    sensors_init();
+    motor_init();
 
-    xTaskCreatePinnedToCore(sensors_task,  "sensors_task", 4096, NULL, 5, NULL, 1);
+    leds_joystick_init();
+
+    xTaskCreatePinnedToCore(servo_test_task,  "servo_test_task", 2048, NULL, 5, NULL, 1);
+
+    xTaskCreatePinnedToCore(leds_joystick_task, "joy_task", 4096, NULL, 5, NULL, 1);
 }
+

@@ -10,6 +10,10 @@
 
 static const char *TAG = "JOYSTICK";
 
+
+extern int global_joy_x; // для коректної роботи сервомотора, щоб він реагував на джойстик, а не на акселерометр
+
+
 static led_strip_handle_t led_strip;
 static adc_oneshot_unit_handle_t adc1_handle; 
 
@@ -69,6 +73,8 @@ void leds_joystick_task(void *pvParameters) {
         ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, JOY_Y_ADC_CHANNEL, &y_val));
 
         ESP_LOGI(TAG, "X: %d, Y: %d", x_val, y_val);
+        
+        global_joy_x = x_val; // для сервомотора
 
         if (y_val < 1000) brightness = 0;
         else if (y_val > 3000) brightness = 100;
