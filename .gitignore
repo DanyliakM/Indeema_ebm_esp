@@ -1,5 +1,10 @@
 build/
 .vscode/
-
+ main/lesson10.c
+ main/ca_cert.pem
+ main/lesson10.c
+ main/main_ble.c
+ main/main_AP.c
+ 
 sdkconfig.old
 managed_components/
