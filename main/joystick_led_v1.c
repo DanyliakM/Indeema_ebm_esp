@@ -63,29 +63,33 @@ void set_led_color(uint8_t r, uint8_t g, uint8_t b) {
     ESP_ERROR_CHECK(led_strip_refresh(led_strip));
 }
 
+
+volatile bool mqtt_override = false; // для mqtt бо окремо робити запарно XD
+
+
 void leds_joystick_task(void *pvParameters) {
     int x_val, y_val;
     uint8_t r = 0, g = 0, b = 0;
     uint8_t brightness = 50;
 
     while (1) {
-        ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, JOY_X_ADC_CHANNEL, &x_val));
-        ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, JOY_Y_ADC_CHANNEL, &y_val));
+            ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, JOY_X_ADC_CHANNEL, &x_val));
+            ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, JOY_Y_ADC_CHANNEL, &y_val));
 
-        ESP_LOGI(TAG, "X: %d, Y: %d", x_val, y_val);
-        
-        global_joy_x = x_val; // для сервомотора
+           // ESP_LOGI(TAG, "X: %d, Y: %d", x_val, y_val);
+            
+            global_joy_x = x_val; // для сервомотора
+            if( !mqtt_override) {
+            if (y_val < 1000) brightness = 0;
+            else if (y_val > 3000) brightness = 100;
+            else brightness = 20;
 
-        if (y_val < 1000) brightness = 0;
-        else if (y_val > 3000) brightness = 100;
-        else brightness = 20;
+            if (x_val < 1000) { r = brightness; g = 0; b = 0; }
+            else if (x_val > 3000) { r = 0; g = 0; b = brightness; }
+            else { r = 0; g = brightness; b = 0; }
 
-        if (x_val < 1000) { r = brightness; g = 0; b = 0; }
-        else if (x_val > 3000) { r = 0; g = 0; b = brightness; }
-        else { r = 0; g = brightness; b = 0; }
-
-        set_led_color(r, g, b);
-
+            set_led_color(r, g, b);
+        }
         vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
