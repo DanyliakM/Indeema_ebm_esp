@@ -1,3 +1,4 @@
-idf_component_register(SRCS "main_ble.c" "gatt_svr.c"
-                       INCLUDE_DIRS "."
-                            REQUIRES nvs_flash bt led_strip)
+idf_build_get_property(project_dir PROJECT_DIR)
+idf_component_register(SRCS "main.c" "joystick_led_v1.c"
+                    INCLUDE_DIRS ".")
+                  
