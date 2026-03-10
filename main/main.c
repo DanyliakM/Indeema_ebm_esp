@@ -17,9 +17,9 @@ idf.py -p /dev/ttyACM0 flash monitor
 #include "nvs_flash.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "servo_motor.h"
 #include "esp_log.h"
 #include "joystick_led_v1.h" // для доступу до глобальних змінних global_joy_x
+#include "wifi_mqtt.h" // для можливості вимикати MQTT при натисканні кнопки джойстика
 
 int global_joy_x = 2048;
 int16_t global_accel_x = 0;
@@ -32,11 +32,13 @@ void app_main(void) {
     }
     ESP_ERROR_CHECK(ret);
 
-    motor_init();
 
     leds_joystick_init();
 
-    xTaskCreatePinnedToCore(servo_test_task,  "servo_test_task", 2048, NULL, 5, NULL, 1);
+    // піднімаємо mqtt 
+    wifi_init_sta();
+    mqtt_app_start();
+
 
     xTaskCreatePinnedToCore(leds_joystick_task, "joy_task", 4096, NULL, 5, NULL, 1);
 }
