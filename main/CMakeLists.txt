@@ -1,4 +1,4 @@
 idf_build_get_property(project_dir PROJECT_DIR)
-idf_component_register(SRCS "main.c" "sensors_v1.c" 
+idf_component_register(SRCS "main.c"  "servo_motor.c" "joystick_led_v1.c"
                     INCLUDE_DIRS ".")   
                   
