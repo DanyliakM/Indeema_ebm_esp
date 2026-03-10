@@ -18,6 +18,10 @@ idf.py -p /dev/ttyACM0 flash monitor
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "joystick_led_v1.h"
+#include "sensors_v1.h"
+#include "esp_log.h"
+
+
 
 void app_main(void) {
     esp_err_t ret = nvs_flash_init();
@@ -27,7 +31,7 @@ void app_main(void) {
     }
     ESP_ERROR_CHECK(ret);
 
-    leds_joystick_init();
+    sensors_init();
 
-    xTaskCreatePinnedToCore(leds_joystick_task,  "joystick_task", 4096, NULL, 5, NULL, 1);
+    xTaskCreatePinnedToCore(sensors_task,  "sensors_task", 4096, NULL, 5, NULL, 1);
 }
