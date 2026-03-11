@@ -1,25 +1,10 @@
-/*
-Послідовність при старті: 
-. $HOME/esp/esp-idf/export.sh - запустити цей скрипт для налаштування середовища розробки
-. idf.py set-target esp32s3 - встановити цільову платформу
-. idf.py build - зібрати проект
-. idf.py flash - прошити прошивку на пристрій
-. idf.py monitor - відкрити монітор для перегляду виводу
-
-Підключення ESP бо вилітає через WSL:
-usbipd attach --wsl --busid 1-3 у PWSH 
-sudo chmod 666 /dev/ttyACM0 - у VS Code cnsl
-idf.py -p /dev/ttyACM0 flash monitor
-*/
-
-
-
 #include "nvs_flash.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
-#include "joystick_led_v1.h" // для доступу до глобальних змінних global_joy_x
-#include "wifi_mqtt.h" // для можливості вимикати MQTT при натисканні кнопки джойстика
+#include "joystick_led_v1.h"
+#include "wifi_mqtt.h"
+#include "uart_handler.h"
 
 int global_joy_x = 2048;
 int16_t global_accel_x = 0;
@@ -32,14 +17,12 @@ void app_main(void) {
     }
     ESP_ERROR_CHECK(ret);
 
-
     leds_joystick_init();
-
-    // піднімаємо mqtt 
+    
     wifi_init_sta();
     mqtt_app_start();
-
+    
+    uart_handler_init();
 
     xTaskCreatePinnedToCore(leds_joystick_task, "joy_task", 4096, NULL, 5, NULL, 1);
 }
-
